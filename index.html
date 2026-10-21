@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+        }
+        .calculator{
+            width: 420px;
+            height: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #display{
+            height: 50px;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size:24px;
+            /* text-align: right; */
+        }
+        .buttons{
+            color: #fff;
+        }
+        #btn{
+            width:80px;
+            height: 50px;
+            margin:5px;
+            font-size: 18px;
+            border-style: solid;
+            border-radius: 5px;
+            border-width: 2px;
+            border-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type ="text" id="display" >
+
+        <div class="buttons">
+            <div id="btn1">
+            <button id = "btn">C</button>
+            <button id ="btn">Del</button>
+            <button id = "btn">%</button>
+            <button id = "btn">/</button>
+            </div>
+
+            <div id="btn2">
+            <button id = "btn">7</button>
+            <button id = "btn">8</button>
+            <button id = "btn">9</button>
+            <button id = "btn">*</button>
+            </div>
+
+            <div id="btn3">
+            <button id = "btn">4</button>
+            <button id = "btn">5</button>
+            <button id = "btn">6</button>
+            <button id = "btn">-</button>
+            </div>
+
+            <div id="btn4">
+            <button id = "btn">1</button>
+            <button id = "btn">2</button>
+            <button id = "btn">3</button>
+            <button id = "btn">+</button>
+            </div>
+
+            <div id="btn5">
+            <button id = "btn">0</button>
+            <button id = "btn">.</button>
+            <button id = "btn">=</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const show = document.getElementById("display");
+        const buttons = document.querySelector(".buttons");
+
+        // buttons.forEach((button) => {
+        //     button.addEventListener("click", () => {
+        //         const buttonText = button.textContent;
+
+        //         if (buttonText === "C") {
+        //             show.value = "";
+        //         } else if (buttonText === "Del") {
+        //             show.value = show.value.slice(0, -1);
+        //         } else if (buttonText === "=") {
+        //             try {
+        //                 show.value = eval(show.value);
+        //             } catch (error) {
+        //                 show.value = "Error";
+        //             }
+        //         } else {
+        //             show.value += buttonText;
+        //         }
+        //     });
+        // });
+        /*
+
+        ForEach : - if we dont have to use this we will use event delegation
+
+        event Delegation :
+        button par alag-alag event listener 
+        lagane ke bajaye, unke parent element par 
+        ek hi event listener lagate hain, 
+        toh use Event Delegation kehte hain.
+
+        buttons ->parent container hai
+        event.target-> tells kis chil button par click krna h 
+
+        */
+
+        buttons.addEventListener("click", function(event){
+            if(event.target.tagName !== "BUTTON"){
+                return;
+            }
+            const value = event.target.textContent;
+
+            if (value === "C"){
+                show.value="";
+            }else if (value=== "Del"){
+                show.value = show.value.slice(0,-1);
+
+            }else if (value=== "="){
+                try{
+                    show.value = eval(show.value) ;
+                }catch {
+                    show.value = "Error";
+                }
+            }
+            else {
+                show.value += value;
+            }
+        });
+
+    </script>
+</body>
+</html>
